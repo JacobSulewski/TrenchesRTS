@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JSON Schema for my sprite factory files",
+
+  "type": "object",
+
+  "patternProperties": {
+    ".*": {
+      "type": "object",
+      "properties": {
+        "Texture2D": { "type": "string" },
+        "AnimationSpeed": { "type": "number" },
+        "Frames": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "x": { "type": "integer" },
+              "y": { "type": "integer" },
+              "width": { "type": "integer" },
+              "height": { "type": "integer" }
+            },
+            "additionalProperties": false,
+            "required": [ "x", "y", "width", "height" ]
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [ "Texture2D", "AnimationSpeed", "Frames" ]
+    }
+  },
+  "additionalProperties": false
+}
