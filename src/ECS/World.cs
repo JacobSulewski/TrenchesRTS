@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Trenches.ECS;
 using Trenches.ECS.Interfaces;
 using TrenchesRTS.ECS.Interfaces;
-using TrenchesRTS.Managers;
 
 namespace TrenchesRTS.ECS
 {

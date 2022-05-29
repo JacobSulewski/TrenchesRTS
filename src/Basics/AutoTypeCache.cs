@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace TrenchesRTS.Basics
 {
+    /// <summary>
+    /// Cache that maintains the lifecycle of an object.
+    /// Automatically creates an object based on the given type and args provided.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class AutoTypeCache<T>
     {
         private readonly IDictionary<(Type, object?[]?), T> _cache = new Dictionary<(Type, object?[]?), T>();

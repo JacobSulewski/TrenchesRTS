@@ -1,7 +1,8 @@
-﻿namespace TrenchesRTS.Managers
+﻿namespace TrenchesRTS.ECS
 {
     public class ComponentMap<T> : ComponentMap where T : struct
     {
+
         private readonly T[] _components;
 
         public T this[int index]

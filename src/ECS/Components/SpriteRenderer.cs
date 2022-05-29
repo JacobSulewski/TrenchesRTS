@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Trenches.ECS.Components;
 using TrenchesRTS.Sprites;
 using TrenchesRTS.Sprites.Factories;
 

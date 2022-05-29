@@ -10,12 +10,12 @@ using System.IO;
 using TrenchesRTS.Basics;
 namespace TrenchesRTS.Sprites.Factories
 {
-    public class SpriteFactory : ISpriteFactory
+    public class JsonSpriteFactory : ISpriteFactory
     {
         private readonly IDictionary<string, (Texture2D texture, Rectangle?[] frames, double animationSpeed)> _spriteData = new Dictionary<string, (Texture2D, Rectangle?[], double)>();
         private readonly Pool<ISprite> _sprites = new(() => new Sprite());
 
-        public SpriteFactory(string factoryFile, TexturePool textures)
+        public JsonSpriteFactory(string factoryFile, TexturePool textures)
         {
             var schema = JSchema.Parse(File.ReadAllText("SpriteFactorySchema.json"));
             var jsonObject = JObject.Parse(File.ReadAllText(factoryFile));

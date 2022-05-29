@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using TrenchesRTS.Basics;
-using TrenchesRTS.ECS;
 using TrenchesRTS.ECS.Interfaces;
 
-namespace TrenchesRTS.Managers
+namespace TrenchesRTS.ECS
 {
     public class EntityManager
     {

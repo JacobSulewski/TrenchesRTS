@@ -22,7 +22,7 @@ namespace TrenchesRTS.Sprites.Factories
             if (_factories.TryGetValue(factoryFile, out var factory))
                 return factory;
 
-            factory = new SpriteFactory(factoryFile, _textures);
+            factory = new JsonSpriteFactory(factoryFile, _textures);
             _factories.Add(factoryFile, factory);
             return factory;
         }

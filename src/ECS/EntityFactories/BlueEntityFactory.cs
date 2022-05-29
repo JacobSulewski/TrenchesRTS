@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using System;
-using Trenches.ECS.Components;
 using TrenchesRTS.ECS.Components;
 using TrenchesRTS.ECS.Interfaces;
 using TrenchesRTS.Sprites.Factories;
@@ -58,7 +57,7 @@ namespace TrenchesRTS.ECS.EntityFactories
             return _createEntity()
                 .AddComponent(new Transform() { Position = _spawnLocation })
                 .AddComponent(new Moveable() { Speed = 50 })
-                .AddComponent(new UnitBoxCollider());
+                .AddComponent(new BoxCollider() { Boundary = new Rectangle(0, 0, 16, 16) });
         }
     }
 }

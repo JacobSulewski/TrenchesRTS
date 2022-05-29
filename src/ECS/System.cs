@@ -1,6 +1,5 @@
 ﻿using System;
 using TrenchesRTS.ECS.Interfaces;
-using TrenchesRTS.Managers;
 
 namespace TrenchesRTS.ECS
 {
