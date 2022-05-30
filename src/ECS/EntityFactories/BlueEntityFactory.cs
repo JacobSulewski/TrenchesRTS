@@ -10,21 +10,21 @@ namespace TrenchesRTS.ECS.EntityFactories
     {
         private readonly Func<IEntity> _createEntity;
         private readonly Vector2 _spawnLocation;
-        private readonly SpriteFactoryCache _spriteFactoryCache;
+        private readonly SpriteFactoryCache _spritePoolCache;
 
         public BlueEntityFactory(Func<IEntity> createEntity, Vector2 spawnLocation,
-            SpriteFactoryCache spriteFactoryCache)
+            SpriteFactoryCache spritePoolCache)
         {
             _createEntity = createEntity;
             _spawnLocation = spawnLocation;
-            _spriteFactoryCache = spriteFactoryCache;
+            _spritePoolCache = spritePoolCache;
         }
 
         public IEntity SpawnInfantryman()
         {
             return GetUnit().AddComponent(new SpriteRenderer()
             {
-                SpriteFactory = _spriteFactoryCache.GetFactory("BlueInfantryman.sf")
+                SpriteFactory = _spritePoolCache.GetFactory("BlueInfantryman.sf")
             });
         }
 
@@ -32,7 +32,7 @@ namespace TrenchesRTS.ECS.EntityFactories
         {
             return GetUnit().AddComponent(new SpriteRenderer()
             {
-                SpriteFactory = _spriteFactoryCache.GetFactory("BlueMachineGunner.sf")
+                SpriteFactory = _spritePoolCache.GetFactory("BlueMachineGunner.sf")
             });
         }
 
@@ -40,7 +40,7 @@ namespace TrenchesRTS.ECS.EntityFactories
         {
             return GetUnit().AddComponent(new SpriteRenderer()
             {
-                SpriteFactory = _spriteFactoryCache.GetFactory("BlueEngineer.sf")
+                SpriteFactory = _spritePoolCache.GetFactory("BlueEngineer.sf")
             });
         }
 
@@ -48,7 +48,7 @@ namespace TrenchesRTS.ECS.EntityFactories
         {
             return GetUnit().AddComponent(new SpriteRenderer()
             {
-                SpriteFactory = _spriteFactoryCache.GetFactory("BlueMortarMan.sf")
+                SpriteFactory = _spritePoolCache.GetFactory("BlueMortarMan.sf")
             });
         }
 

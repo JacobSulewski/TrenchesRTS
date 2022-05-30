@@ -11,20 +11,20 @@ namespace TrenchesRTS.ECS.EntityFactories
     {
         private readonly Func<IEntity> _createEntity;
         private readonly Vector2 _spawnLocation;
-        private readonly SpriteFactoryCache _spriteFactoryCache;
+        private readonly SpriteFactoryCache _spritePoolCache;
 
-        public GreenEntityFactory(Func<IEntity> createEntity, Vector2 spawnLocation, SpriteFactoryCache spriteFactoryCache)
+        public GreenEntityFactory(Func<IEntity> createEntity, Vector2 spawnLocation, SpriteFactoryCache spritePoolCache)
         {
             _createEntity = createEntity;
             _spawnLocation = spawnLocation;
-            _spriteFactoryCache = spriteFactoryCache;
+            _spritePoolCache = spritePoolCache;
         }
 
         public IEntity SpawnInfantryman()
         {
             return GetUnit().AddComponent(new SpriteRenderer()
             {
-                SpriteFactory = _spriteFactoryCache.GetFactory("GreenInfantryman.sf")
+                SpriteFactory = _spritePoolCache.GetFactory("GreenInfantryman.sf")
             });
         }
 
@@ -32,7 +32,7 @@ namespace TrenchesRTS.ECS.EntityFactories
         {
             return GetUnit().AddComponent(new SpriteRenderer()
             {
-                SpriteFactory = _spriteFactoryCache.GetFactory("GreenMachineGunner.sf")
+                SpriteFactory = _spritePoolCache.GetFactory("GreenMachineGunner.sf")
             });
         }
 
@@ -40,7 +40,7 @@ namespace TrenchesRTS.ECS.EntityFactories
         {
             return GetUnit().AddComponent(new SpriteRenderer()
             {
-                SpriteFactory = _spriteFactoryCache.GetFactory("GreenEngineer.sf")
+                SpriteFactory = _spritePoolCache.GetFactory("GreenEngineer.sf")
             });
         }
 
@@ -48,7 +48,7 @@ namespace TrenchesRTS.ECS.EntityFactories
         {
             return GetUnit().AddComponent(new SpriteRenderer()
             {
-                SpriteFactory = _spriteFactoryCache.GetFactory("GreenMortarMan.sf")
+                SpriteFactory = _spritePoolCache.GetFactory("GreenMortarMan.sf")
             });
         }
 

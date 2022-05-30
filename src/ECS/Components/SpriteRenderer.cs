@@ -16,7 +16,6 @@ namespace TrenchesRTS.ECS.Components
         public void SetSprite(string spriteName) => _sprite = SpriteFactory.GetSprite(spriteName);
 
         public void Update(GameTime gameTime) => _sprite.Update(gameTime);
-
         public void Draw(SpriteBatch spriteBatch, Transform transform)
         {
             _sprite?.Draw(spriteBatch, transform.Position, Color.White, transform.Rotation, Vector2.Zero, transform.Scale, SpriteEffects, transform.LayerDepth);

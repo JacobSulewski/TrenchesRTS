@@ -1,5 +1,4 @@
-﻿using System;
-using TrenchesRTS.ECS.Interfaces;
+﻿using TrenchesRTS.ECS.Interfaces;
 
 namespace TrenchesRTS.ECS
 {
@@ -33,18 +32,6 @@ namespace TrenchesRTS.ECS
             if ((entity.ComponentBitMask & _excludeBitMask) != 0)
                 return false;
             return true;
-        }
-    }
-
-    public struct ComponentFilter
-    {
-        public Type[] IncludedTypes;
-        public Type[] ExcludedTypes;
-
-        public ComponentFilter(Type[] includedTypes, Type[] excludedTypes)
-        {
-            IncludedTypes = includedTypes;
-            ExcludedTypes = excludedTypes;
         }
     }
 }

@@ -5,7 +5,10 @@ using System.Collections.Generic;
 
 namespace TrenchesRTS.Basics
 {
-    public class TexturePool : IDisposable
+    /// <summary>
+    /// Texture pool for texture reuse.
+    /// </summary>
+    public sealed class TexturePool : IDisposable
     {
         private readonly ContentManager _content;
         private IDictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();

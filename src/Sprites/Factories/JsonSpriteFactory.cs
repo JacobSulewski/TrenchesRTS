@@ -10,13 +10,21 @@ using System.IO;
 using TrenchesRTS.Basics;
 namespace TrenchesRTS.Sprites.Factories
 {
+    /// <summary>
+    /// Parses a Json file into a factory that generates sprites.
+    /// </summary>
     public class JsonSpriteFactory : ISpriteFactory
     {
-        private readonly IDictionary<string, (Texture2D texture, Rectangle?[] frames, double animationSpeed)> _spriteData = new Dictionary<string, (Texture2D, Rectangle?[], double)>();
-        private readonly Pool<ISprite> _sprites = new(() => new Sprite());
+        private readonly IDictionary<string, (Texture2D texture, Rectangle?[] frames, double animationSpeed)> _spriteData =
+            new Dictionary<string, (Texture2D, Rectangle?[], double)>();
+        //private readonly Pool<ISprite> _sprites = new(() => new Sprite());
 
         public JsonSpriteFactory(string factoryFile, TexturePool textures)
         {
+            /*
+             * Parse Json file and use the given texture pool to create a factory that generates
+             * sprites according to the specifications of the Json file.
+             */
             var schema = JSchema.Parse(File.ReadAllText("SpriteFactorySchema.json"));
             var jsonObject = JObject.Parse(File.ReadAllText(factoryFile));
             if (!jsonObject.IsValid(schema, out IList<string> errorMessages))
@@ -25,6 +33,7 @@ namespace TrenchesRTS.Sprites.Factories
                 return;
             }
 
+            // Generate 
             foreach (var (spriteName, tuple) in jsonObject.ToObject<Dictionary<string, JObject>>()!)
             {
                 if (_spriteData.ContainsKey(spriteName))
@@ -37,22 +46,9 @@ namespace TrenchesRTS.Sprites.Factories
 
         }
 
-        public ISprite? GetSprite(string spriteName)
-        {
-            var sprite = _sprites.Obtain();
-            if (_spriteData.TryGetValue(spriteName, out var spriteInfo))
-            {
-                sprite.Texture = spriteInfo.texture;
-                sprite.Frames = spriteInfo.frames;
-                sprite.AnimationSpeed = spriteInfo.animationSpeed;
-            }
-            else
-            {
-                sprite.Texture = null;
-            }
-            return sprite;
-        }
-        public void Free(ISprite sprite) => _sprites.Free(sprite);
+        public ISprite? GetSprite(string spriteName) =>
+            _spriteData.TryGetValue(spriteName, out var spriteInfo)
+                ? new Sprite(spriteInfo.texture, spriteInfo.frames, spriteInfo.animationSpeed) : null;
 
         private static Rectangle?[] ParseRectangles(JArray jsonRectangleArray)
         {
