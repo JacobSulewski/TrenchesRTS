@@ -19,10 +19,10 @@ namespace TrenchesRTS.ECS
         public void Init(World world, ComponentManager componentManager)
         {
             foreach (var type in _filter.IncludedTypes)
-                _includeBitMask += 1 << componentManager.GetComponentId(type);
+                _includeBitMask += 1 << componentManager.GetId(type);
 
             foreach (var type in _filter.ExcludedTypes)
-                _excludeBitMask += 1 << componentManager.GetComponentId(type);
+                _excludeBitMask += 1 << componentManager.GetId(type);
         }
 
         // TODO: update based filtering? vs event based filtering? 

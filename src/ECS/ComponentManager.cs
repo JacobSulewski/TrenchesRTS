@@ -6,32 +6,30 @@ namespace TrenchesRTS.ECS
     public class ComponentManager
     {
         private readonly int _maxEntityCount;
-        private int _componentCount = 0;
+        private int _count = 0;
 
-        private readonly Dictionary<Type, int> _componentIdMap = new(sizeof(int));
-        private readonly ComponentMap[] _componentMaps = new ComponentMap[sizeof(int)];
+        private readonly Dictionary<Type, int> _idMap = new(sizeof(int));
+        private readonly Array[] _arrays = new Array[sizeof(int)];
+        // TODO replace array with a dense array
 
         public ComponentManager(int maxEntityCount)
         {
             _maxEntityCount = maxEntityCount;
         }
 
-        public int GetComponentId<T>() where T : struct => GetComponentId(typeof(T));
-        public int GetComponentId(Type type) => _componentIdMap.TryGetValue(type, out var id) ? id : _createAndGetNewComponentId(type);
-        public T GetComponent<T>(int entityId) where T : struct => ((ComponentMap<T>)_componentMaps[GetComponentId<T>()])[entityId];
-        public void AddComponent<T>(int entityId, T component) where T : struct
-        {
-            var componentId = GetComponentId<T>();
-            _componentMaps[componentId] ??= new ComponentMap<T>(_maxEntityCount);
-            ((ComponentMap<T>)_componentMaps[componentId])[entityId] = component;
-        }
+        public int GetId<T>() where T : struct => GetId(typeof(T));
+        public int GetId(Type type) => _idMap.TryGetValue(type, out var id) ? id : _createNewId(type);
+        public T Get<T>(int entityId) where T : struct => ((T[])(_arrays[GetId<T>()] ??= _createNewArray<T>()))[entityId];
+        public void Add<T>(int entityId, T component) where T : struct => ((T[])_arrays[GetId<T>()])[entityId] = component;
 
-        private int _createAndGetNewComponentId(Type type)
+        private int _createNewId(Type type)
         {
-            if (_componentCount == _componentMaps.Length)
+            if (_count == _arrays.Length)
                 throw new ArgumentOutOfRangeException(type.Name, "Error: Maximum number of components are created");
-            _componentIdMap.Add(type, _componentCount);
-            return _componentCount++;
+
+            _idMap.Add(type, _count);
+            return _count++;
         }
+        private T[] _createNewArray<T>() where T : struct => new T[_maxEntityCount];
     }
 }

@@ -4,7 +4,7 @@ using TrenchesRTS.ECS.Interfaces;
 
 namespace TrenchesRTS.ECS
 {
-    public class Entity : IEntity
+    public sealed class Entity : IEntity
     {
         private readonly ComponentManager _componentManager;
 
@@ -21,8 +21,8 @@ namespace TrenchesRTS.ECS
         {
             try
             {
-                _componentManager.AddComponent(Id, component);
-                ComponentBitMask += 1 << _componentManager.GetComponentId<T>();
+                _componentManager.Add(Id, component);
+                ComponentBitMask += 1 << _componentManager.GetId<T>();
             }
             catch (Exception e)
             {
@@ -36,8 +36,8 @@ namespace TrenchesRTS.ECS
         {
             try
             {
-                component = _componentManager.GetComponent<T>(Id);
-                var componentId = _componentManager.GetComponentId<T>();
+                component = _componentManager.Get<T>(Id);
+                var componentId = _componentManager.GetId<T>();
                 return componentId == (ComponentBitMask & componentId);
             }
             catch (Exception e)
