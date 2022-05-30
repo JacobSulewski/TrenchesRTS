@@ -18,8 +18,8 @@ namespace TrenchesRTS.ECS.Systems
             foreach (var entity in World.ActiveEntities)
                 if (Verify(entity))
                 {
-                    entity.GetComponent(out Transform transform);
-                    entity.GetComponent(out BoxCollider boxCollider);
+                    entity.TryGetComponent(out Transform transform);
+                    entity.TryGetComponent(out BoxCollider boxCollider);
 
                     /*TODO broad search, quad tree*/
                     /*TODO OnExit*/

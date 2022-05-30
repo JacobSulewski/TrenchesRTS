@@ -8,6 +8,6 @@ namespace TrenchesRTS.ECS.Interfaces
         public int ComponentBitMask { get; }
 
         public IEntity AddComponent<T>(T component) where T : struct;
-        public bool GetComponent<T>(out T component) where T : struct;
+        public bool TryGetComponent<T>(out T component) where T : struct;
     }
 }

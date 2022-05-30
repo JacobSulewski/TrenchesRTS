@@ -18,8 +18,8 @@ namespace TrenchesRTS.ECS.Systems
             foreach (var entity in World.ActiveEntities)
                 if (Verify(entity))
                 {
-                    entity.GetComponent(out Transform transform);
-                    entity.GetComponent(out Moveable moveable);
+                    entity.TryGetComponent(out Transform transform);
+                    entity.TryGetComponent(out Moveable moveable);
                     transform.Position += (moveable.Velocity * gameTime.ElapsedGameTime.Seconds) * moveable.Speed;
                     moveable.Velocity += (moveable.Acceleration * gameTime.ElapsedGameTime.Seconds);
                 }

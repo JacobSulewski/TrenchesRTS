@@ -20,7 +20,7 @@ namespace TrenchesRTS.ECS.Systems
             foreach (var entity in World.ActiveEntities)
                 if (Verify(entity))
                 {
-                    entity.GetComponent(out SpriteRenderer spriteRenderer);
+                    entity.TryGetComponent(out SpriteRenderer spriteRenderer);
                     spriteRenderer.Update(gameTime);
                 }
         }
@@ -29,8 +29,8 @@ namespace TrenchesRTS.ECS.Systems
             foreach (var entity in World.ActiveEntities)
                 if (Verify(entity))
                 {
-                    entity.GetComponent(out SpriteRenderer spriteRenderer);
-                    entity.GetComponent(out Transform transform);
+                    entity.TryGetComponent(out SpriteRenderer spriteRenderer);
+                    entity.TryGetComponent(out Transform transform);
                     spriteRenderer.Draw(spriteBatch, transform);
                 }
         }
