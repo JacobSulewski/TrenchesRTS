@@ -11,6 +11,8 @@ namespace TrenchesRTS.ECS
         private readonly List<IEntity> _activeEntities = new();
         public IEnumerable<IEntity> ActiveEntities => _activeEntities.ToArray();
 
+        /// <param name="maxEntityCount"> The max number of entities to create. </param>
+        /// <param name="componentManager"> The component manager to hold all the components of the created entities</param>
         public EntityManager(int maxEntityCount, ComponentManager componentManager)
         {
             _entityPool = new Pool<IEntity>(

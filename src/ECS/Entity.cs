@@ -5,7 +5,7 @@ using TrenchesRTS.ECS.Interfaces;
 namespace TrenchesRTS.ECS
 {
     /// <summary>
-    /// Entity is a wrapper around a unique public Id and ComponentBitMask
+    /// Entity is a wrapper around a unique public Id and ComponentBitMask.
     /// </summary>
     public sealed class Entity : IEntity
     {
@@ -13,12 +13,12 @@ namespace TrenchesRTS.ECS
 
         public int Id { get; }
         /// <summary>
-        /// Bit mask to represent active components associated with @this
+        /// Bit mask to represent active components associated with @this.
         /// </summary>
         public int ComponentBitMask { get; private set; } = 0;
 
-        /// <param name="id">Unique int identifier for @this</param>
-        /// <param name="componentManager">Stores components associated with @this</param>
+        /// <param name="id"> Unique int identifier for @this. </param>
+        /// <param name="componentManager"> Stores components associated with @this. </param>
         public Entity(int id, ComponentManager componentManager)
         {
             Id = id;
@@ -41,11 +41,11 @@ namespace TrenchesRTS.ECS
         }
 
         /// <summary>
-        /// Try to get the component associated with @this
+        /// Try to get the component associated with @this.
         /// </summary>
-        /// <typeparam name="T">The type of the component to get</typeparam>
-        /// <param name="component">The component returned</param>
-        /// <returns>Returns true if returned component is an active component to @this, false otherwise</returns>
+        /// <typeparam name="T"> The type of the component to get. </typeparam>
+        /// <param name="component"> The component returned. </param>
+        /// <returns> Returns true if returned component is an active component to @this, false otherwise. </returns>
         public bool TryGetComponent<T>(out T component) where T : struct
         {
             try

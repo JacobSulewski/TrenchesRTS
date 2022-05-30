@@ -7,6 +7,9 @@ using TrenchesRTS.ECS.Interfaces;
 
 namespace TrenchesRTS.ECS
 {
+    /// <summary>
+    /// The world that manages all the entities, components, and systems. 
+    /// </summary>
     public class World
     {
         private readonly ComponentManager _componentManager;
@@ -15,12 +18,18 @@ namespace TrenchesRTS.ECS
         private readonly IList<IUpdateSystem> _updateSystems = new List<IUpdateSystem>();
         private readonly IList<IDrawSystem> _drawSystems = new List<IDrawSystem>();
 
+        /// <param name="maxEntityCount"> Max number of active entities at a given time. </param>
         public World(int maxEntityCount = 128)
         {
             _componentManager = new ComponentManager(maxEntityCount);
             _entityManager = new EntityManager(maxEntityCount, _componentManager);
         }
 
+        /// <summary>
+        /// Attach a new system to the world (order matters! whatever order added will be ordered updated).
+        /// </summary>
+        /// <param name="system"> The system to add. </param>
+        /// <returns> Returns @this </returns>
         public World AttachSystem(System system)
         {
             system.Init(this, _componentManager);
